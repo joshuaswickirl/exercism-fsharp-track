@@ -1,9 +1,11 @@
 ﻿module QueenAttack
 
-let create (position: int * int): bool = 
-    (fst position < 8 && fst position > 0) && (snd position < 8 && snd position > 0)
+let create (row: int, col: int): bool = 
+    (row < 8 && row > 0) && (col < 8 && col > 0)
 
 let canAttack (queen1: int * int) (queen2: int * int) = 
-    (fst queen1 = fst queen2) ||
-    (snd queen1 = snd queen2) ||
-    (fst queen1 - fst queen2 |> abs) = (snd queen1 - snd queen2 |> abs)
+    let row_queen1, col_queen1 = queen1
+    let row_queen2, col_queen2 = queen2
+    (row_queen1 = row_queen2) 
+    || (col_queen1 = col_queen2) 
+    || (row_queen1 - row_queen2 |> abs) = (col_queen1 - col_queen2 |> abs)
